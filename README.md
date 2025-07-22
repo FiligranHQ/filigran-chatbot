@@ -189,7 +189,7 @@ yarn start
 <script type="module">
   import Chatbot from './web.js';
   Chatbot.init({
-    agenticUrl: 'https://your-flowise-instance.com/api/v1/predicition/91e9c803-5169-4db9-8207-3c0915d71c5f', // Add your endpoint
+    agenticUrl: 'https://your-agentic-service-url/endpoint', // Add your endpoint
   });
 </script>
 ```
