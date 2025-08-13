@@ -211,3 +211,19 @@ yarn dev
 ## License
 
 Source code in this repository is made available under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+
+## Release a new version
+
+1. Git tag the repository with the desired version (ex: 1.0.0)
+1. Push the tag: on push an [Action is triggered](https://github.com/FiligranHQ/filigran-chatbot/actions) that release the version
+1. At the end a tar.gz archive is on the [Release page](https://github.com/FiligranHQ/filigran-chatbot/releases)
+
+In short:
+```bash
+git tag -a 1.0.0 -m "Releasing version 1.0.0"
+```
+
+Example of usage with yarn:
+```bash
+yarn add filigran-chatbot@https://github.com/FiligranHQ/filigran-chatbot/releases/download/1.0.0/filigran-chatbot-v1.0.0.tgz
+```
