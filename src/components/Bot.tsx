@@ -1177,11 +1177,11 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           <Show when={messages().length > 2}>
             <Show when={followUpPrompts().length > 0}>
               <>
-                <div class="flex items-center gap-1 px-5">
+                <div class="flex items-center gap-1 px-4">
                   <SparklesIcon class="w-4 h-4" />
                   <span class="text-sm text-gray-700">Try these prompts</span>
                 </div>
-                <div class="w-full flex flex-row flex-wrap px-5 py-[10px] gap-2">
+                <div class="w-full flex flex-row flex-wrap px-4 py-[10px] gap-2">
                   <For each={[...followUpPrompts()]}>
                     {(prompt, index) => (
                       <FollowUpPromptBubble
@@ -1196,11 +1196,11 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
             </Show>
           </Show>
           <Show when={previews().length > 0}>
-            <div class="w-full flex items-center justify-start gap-2 px-5 pt-2 border-t border-[#eeeeee]">
+            <div class="w-full flex items-center justify-start gap-2 px-4 pt-2 border-t border-[#eeeeee]">
               <For each={[...previews()]}>{(item) => <>{previewDisplay(item)}</>}</For>
             </div>
           </Show>
-          <div class="w-full px-5 pt-2 pb-1">
+          <div class="w-full px-4 pt-2 pb-1">
             {isRecording() ? (
               <>
                 {recordingNotSupported() ? (

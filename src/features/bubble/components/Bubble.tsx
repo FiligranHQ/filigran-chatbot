@@ -88,6 +88,7 @@ export const Bubble = (props: BubbleProps) => {
       </div>
       <div
         part="bot"
+        onMouseDown={(e) => e.stopPropagation()}
         style={{
           height: bubbleProps.theme?.chatWindow?.height ? `${bubbleProps.theme?.chatWindow?.height.toString()}px` : 'calc(100% - 150px)',
           width: bubbleProps.theme?.chatWindow?.width ? `${bubbleProps.theme?.chatWindow?.width.toString()}px` : undefined,
@@ -103,10 +104,13 @@ export const Bubble = (props: BubbleProps) => {
           'z-index': 42424242,
           bottom: '28px',
           left: `${props.left + 24}px`,
+          'user-select': 'text',
+          'pointer-events': isBotOpened() ? 'auto' : 'none',
+          'cursor': 'default',
         }}
         class={
           `fixed sm:right-5 rounded-lg w-full ${!full() ? 'sm:w-[400px]' : 'sm:w-[80%]'} ${!full() ? 'max-h-[704px]' : 'max-h-[80%]'}` +
-          (isBotOpened() ? ' opacity-1' : ' opacity-0 pointer-events-none')
+          (isBotOpened() ? ' opacity-1' : ' opacity-0')
         }
       >
         <Show when={isBotStarted()}>
