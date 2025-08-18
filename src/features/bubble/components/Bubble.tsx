@@ -8,10 +8,13 @@ import { getBubbleButtonSize } from '@/utils';
 const defaultButtonColor = '#3B81F6';
 const defaultIconColor = 'white';
 
-export type BubbleProps = BotProps & BubbleParams;
+export type BubbleProps = BotProps & BubbleParams & {
+  open?: boolean;
+  onClose?: () => void;
+};
 
 export const Bubble = (props: BubbleProps) => {
-  const [bubbleProps] = splitProps(props, ['theme']);
+  const [bubbleProps] = splitProps(props, ['theme', 'open', 'onClose']);
 
   const [isBotOpened, setIsBotOpened] = createSignal(false);
   const [isBotStarted, setIsBotStarted] = createSignal(false);
@@ -20,12 +23,22 @@ export const Bubble = (props: BubbleProps) => {
     left: bubbleProps.theme?.button?.left ?? 20,
   });
 
+  createEffect(() => {
+    setIsBotOpened(!!props.open);
+    if (props.open && !isBotStarted()) {
+      setIsBotStarted(true);
+    }
+  });
+
   const openBot = () => {
     if (!isBotStarted()) setIsBotStarted(true);
     setIsBotOpened(true);
   };
 
   const closeBot = () => {
+    if (typeof props.onClose === 'function') {
+      props.onClose();
+    }
     setIsBotOpened(false);
   };
 
