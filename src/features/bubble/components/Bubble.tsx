@@ -88,7 +88,6 @@ export const Bubble = (props: BubbleProps) => {
       </div>
       <div
         part="bot"
-        onMouseDown={(e) => e.stopPropagation()}
         style={{
           height: bubbleProps.theme?.chatWindow?.height ? `${bubbleProps.theme?.chatWindow?.height.toString()}px` : 'calc(100% - 150px)',
           width: bubbleProps.theme?.chatWindow?.width ? `${bubbleProps.theme?.chatWindow?.width.toString()}px` : undefined,
