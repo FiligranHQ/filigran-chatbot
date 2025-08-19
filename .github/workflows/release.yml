@@ -9,7 +9,6 @@ on:
 
 jobs:
   release-chatbot:
-    if: github.event.base_ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
