@@ -114,7 +114,7 @@ export const TextInput = (props: TextInputProps) => {
       onKeyDown={handleKeyDown}
     >
       <Show when={warningMessage() !== ''}>
-        <div class="w-full px-4 pt-4 pb-1 text-red-500 text-sm" data-testid="warning-message">
+        <div class="w-full px-4 pt-4 pb-1 text-red-500 text-sm whitespace-break-spaces" data-testid="warning-message">
           {warningMessage()}
         </div>
       </Show>
