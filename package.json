@@ -45,7 +45,7 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-solid": "1.9.9",
     "eslint": "^8.24.0",
-    "eslint-config-next": "13.2.4",
+    "eslint-config-next": "13.5.11",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.26.1",
