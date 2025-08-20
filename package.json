@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "7.23.0",
+    "@babel/core": "7.28.3",
     "@microsoft/fetch-event-source": "2.0.1",
     "@ts-stack/markdown": "1.5.0",
     "cross-env": "7.0.3",
@@ -28,7 +28,7 @@
     "solid-js": "1.9.9"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "7.21.4",
+    "@babel/preset-typescript": "7.27.1",
     "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-json": "^6.1.0",
