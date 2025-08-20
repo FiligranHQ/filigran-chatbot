@@ -49,6 +49,7 @@ export const Badge = (props: Props) => {
           }}
         >
           {props.footer?.text ?? 'Powered by'}
+          &nbsp;
           <a
             ref={liteBadge}
             href={props.footer?.companyLink ?? 'https://filigran.io'}
@@ -58,7 +59,7 @@ export const Badge = (props: Props) => {
             id="lite-badge"
             style={{ 'font-weight': 'bold', color: props.footer?.textColor ?? props.poweredByTextColor ?? defaultTextColor }}
           >
-            <span>&nbsp;{props.footer?.company ?? 'Filigran'}</span>
+            <span>{props.footer?.company ?? 'Filigran'}</span>
           </a>
         </span>
       </Show>
