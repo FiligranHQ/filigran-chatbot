@@ -39,7 +39,7 @@ export const BotBubble = (props: Props) => {
 
       // Apply textColor to all links, headings, and other markdown elements except code
       const textColor = props.textColor ?? defaultTextColor;
-      el.querySelectorAll('a, h1, h2, h3, h4, h5, h6, strong, em, blockquote, li').forEach((element) => {
+      el.querySelectorAll('a, h1, h2, h3, h4, h5, h6, strong, em, blockquote, li, th').forEach((element) => {
         (element as HTMLElement).style.color = textColor;
       });
 
