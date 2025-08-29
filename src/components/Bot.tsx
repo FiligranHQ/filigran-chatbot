@@ -394,6 +394,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
   const [isRecording, setIsRecording] = createSignal(false);
   const [recordingNotSupported, setRecordingNotSupported] = createSignal(false);
   const [isLoadingRecording, setIsLoadingRecording] = createSignal(false);
+  const [isDirectReplyAgent, setIsDirectReplyAgent] = createSignal(false);
 
   // follow-up prompts
   const [followUpPrompts, setFollowUpPrompts] = createSignal<string[]>([]);
@@ -448,10 +449,14 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
         }));
         return { ...item, fileUploads };
       }
+      // To prevent localStorage overloading 
+      delete item.agentFlowEventStatus;
+      delete item.agentFlowExecutedData;
+      
       return item;
     });
     setLocalStorageChatDetails(props.agenticUrl, chatId(), { chatHistory: messages });
-  };
+};
 
   // Define the audioRef
   let audioRef: HTMLAudioElement | undefined;
@@ -469,7 +474,13 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       const allMessages = [...cloneDeep(prevMessages)];
       if (allMessages[allMessages.length - 1].type === 'userMessage') return allMessages;
       if (!text) return allMessages;
-      allMessages[allMessages.length - 1].message += text;
+      // directReplyAgent are just loading messages
+      if (isDirectReplyAgent()) {
+        allMessages[allMessages.length - 1].message = text;
+        setIsDirectReplyAgent(false);
+      } else {
+        allMessages[allMessages.length - 1].message += text;
+      }
       allMessages[allMessages.length - 1].dateTime = new Date().toISOString();
       if (!hasSoundPlayed) {
         playReceiveSound();
@@ -484,6 +495,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     setMessages((prevMessages) => {
       const allMessages = [...cloneDeep(prevMessages)];
       allMessages.push({ message: props.errorMessage || errorMessage, type: 'apiMessage' });
+      setIsDirectReplyAgent(false);
       addChatMessage(allMessages);
       return allMessages;
     });
@@ -698,6 +710,11 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
           case 'agentReasoning':
             updateLastMessageAgentReasoning(payload.data);
             break;
+          case 'nextAgentFlow':
+            if (payload.data.nodeId.startsWith('directReplyAgent')) {
+              setIsDirectReplyAgent(true);
+            }
+            break;
           case 'agentFlowEvent':
             updateAgentFlowEvent(payload.data);
             break;
@@ -754,6 +771,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       if (lastAgentReasoning && lastAgentReasoning.length > 0) {
         allMessages[allMessages.length - 1].agentReasoning = lastAgentReasoning.filter((reasoning) => !reasoning.nextAgent);
       }
+      setIsDirectReplyAgent(false);
       return allMessages;
     });
   };
