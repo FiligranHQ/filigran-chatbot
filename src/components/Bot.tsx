@@ -674,15 +674,23 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
         if (response.ok && response.headers.get('content-type')?.startsWith(EventStreamContentType)) {
           return; // everything's good
         } else if (response.status === 429) {
-          const errMessage = (await response.text()) ?? 'Too many requests. Please try again later.';
+          const errMessage = 'API rate limit exceeded (50 queries → 24h).';
           handleError(errMessage, true);
           throw new Error(errMessage);
         } else if (response.status === 403) {
-          const errMessage = (await response.text()) ?? 'Unauthorized';
+          const errMessage = 'Unauthorized';
           handleError(errMessage);
           throw new Error(errMessage);
         } else if (response.status === 401) {
-          const errMessage = (await response.text()) ?? 'Unauthenticated';
+          const errMessage = 'Unauthenticated';
+          handleError(errMessage);
+          throw new Error(errMessage);
+        } else if (response.status === 400) {
+          const errMessage = 'Chatbot proxy not properly configured';
+          handleError(errMessage);
+          throw new Error(errMessage);
+        } else if (response.status >= 500 && response.status < 600) {
+          const errMessage = 'Server error. Please try again later.';
           handleError(errMessage);
           throw new Error(errMessage);
         } else {
