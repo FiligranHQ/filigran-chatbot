@@ -471,10 +471,8 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
 
   const updateLastMessage = (text: string) => {
     setMessages((prevMessages) => {
-      console.log('UpdateLastMessage with text', text)
       const allMessages = [...cloneDeep(prevMessages)];
       if (allMessages[allMessages.length - 1].type === 'userMessage') return allMessages;
-      console.log('UpdateLastMessage after userMessage', isDirectReplyAgent())
       if (!text) return allMessages;
       // directReplyAgent are just loading messages
       if (isDirectReplyAgent()) {
