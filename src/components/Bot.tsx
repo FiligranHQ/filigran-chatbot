@@ -471,8 +471,10 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
 
   const updateLastMessage = (text: string) => {
     setMessages((prevMessages) => {
+      console.log('UpdateLastMessage with text', text)
       const allMessages = [...cloneDeep(prevMessages)];
       if (allMessages[allMessages.length - 1].type === 'userMessage') return allMessages;
+      console.log('UpdateLastMessage after userMessage', isDirectReplyAgent())
       if (!text) return allMessages;
       // directReplyAgent are just loading messages
       if (isDirectReplyAgent()) {
@@ -674,7 +676,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
         if (response.ok && response.headers.get('content-type')?.startsWith(EventStreamContentType)) {
           return; // everything's good
         } else if (response.status === 429) {
-          const errMessage = 'API rate limit exceeded (50 queries → 24h).';
+          const errMessage = 'Preview API limit reached (50 requests per day). As this is a preview version, requests are limited. Your limit will reset in 24 hours.';
           handleError(errMessage, true);
           throw new Error(errMessage);
         } else if (response.status === 403) {

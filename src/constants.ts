@@ -31,7 +31,7 @@ export const defaultBotProps: BubbleProps = {
     chatWindow: {
       showTitle: true,
       showAgentMessages: false,
-      title: 'Ariane AI Assistant',
+      title: '[Preview] Ariane AI Assistant',
       titleAvatarSrc: 'https://filigran.io/app/uploads/2025/05/embleme_filigran_blanc.png',
       welcomeMessage: "Hi there 👋 You're speaking with an AI Agent. I'm here to answer your questions, so what brings you here today?",
       errorMessage: 'Sorry, an error has occurred, please try again later.',
