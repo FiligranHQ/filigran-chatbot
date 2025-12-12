@@ -1,3 +1,7 @@
+# This repository has been archived
+
+You can find filigran-chatbot code in the `packages/filigran-chatbot` directory of [Filigran UI repository](https://github.com/FiligranHQ/filigran-ui)
+
 <!-- markdownlint-disable MD030 -->
 
 # Filigran Chatbot
